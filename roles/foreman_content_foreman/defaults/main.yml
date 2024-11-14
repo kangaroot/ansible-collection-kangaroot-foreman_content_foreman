@@ -1,0 +1,144 @@
+---
+# noqa: var-naming[no-role-prefix]
+# defaults file for foreman_content_foreman
+
+#######################################
+### URLS
+#######################################
+
+### FOREMAN
+
+foreman_repo_baseurl_foreman: https://yum.theforeman.org
+foreman_repo_baseurl_fedora_copr: https://download.copr.fedorainfracloud.org/results
+foreman_repo_baseurl_puppet: http://yum.puppetlabs.com
+
+
+#######################################
+### ENABLE VARS
+#######################################
+
+### FOREMAN
+
+foreman_enable_foreman: false
+
+foreman_enable_foreman_el7: "{{ foreman_enable_foreman | bool }}"
+foreman_enable_foreman_el8: "{{ foreman_enable_foreman | bool }}"
+foreman_enable_foreman_el9: "{{ foreman_enable_foreman | bool }}"
+
+
+#######################################
+### PRODUCT DEFAULTS
+#######################################
+
+### FOREMAN
+
+foreman_products_defaults_download_policy_foreman: "{{ foreman_products_defaults_download_policy }}"
+foreman_products_defaults_mirroring_policy_foreman: mirror_content_only
+foreman_products_defaults_verify_ssl_on_sync_foreman: "{{ foreman_products_defaults_verify_ssl_on_sync | bool }}"
+foreman_products_defaults_http_proxy_policy_foreman: "{{ foreman_products_defaults_http_proxy_policy }}"
+foreman_products_defaults_unprotected_foreman: "{{ foreman_products_defaults_unprotected | bool }}"
+
+
+#######################################
+### ORGANIZATION VARS
+#######################################
+
+### FOREMAN
+
+foreman_organization_foreman: "{{ foreman_organization }}"
+
+foreman_organization_foreman_el7: "{{ foreman_organization_foreman }}"
+foreman_organization_foreman_el8: "{{ foreman_organization_foreman }}"
+foreman_organization_foreman_el9: "{{ foreman_organization_foreman }}"
+
+
+#######################################
+### CONTENT VIEW DEFAULTS
+#######################################
+
+### FOREMAN
+
+foreman_cv_allow_promote_foreman: "{{ foreman_cv_allow_promote | bool }}"
+
+foreman_cv_allow_promote_foreman_el7: "{{ foreman_cv_allow_promote_foreman | bool }}"
+foreman_cv_allow_promote_foreman_el8: "{{ foreman_cv_allow_promote_foreman | bool }}"
+foreman_cv_allow_promote_foreman_el9: "{{ foreman_cv_allow_promote_foreman | bool }}"
+
+
+#######################################
+### CONTENT
+#######################################
+
+foreman_content_credentials_foreman_main:
+  - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-foreman"
+    content_type: gpg_key
+    content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_foreman ~ '/releases/latest/RPM-GPG-KEY-foreman', split_lines=False, validate_certs=False) }}"
+    # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-foreman') }}"
+  # - name: RPM-GPG-KEY-copr-qpid
+  #   content_type: gpg_key
+  #   content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_fedora_copr ~ '/@qpid/qpid/pubkey.gpg', split_lines=False, validate_certs=False) }}"
+  #   # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-copr-qpid') }}"
+  - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-pulpcore"
+    content_type: gpg_key
+    content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_foreman ~ '/pulpcore/3.16/GPG-RPM-KEY-pulpcore', split_lines=False, validate_certs=False) }}"
+    # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-pulpcore') }}"
+  - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-puppet"
+    content_type: gpg_key
+    content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_puppet ~ '/RPM-GPG-KEY-puppet', split_lines=False, validate_certs=False) }}"
+    # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-puppet') }}"
+  - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-puppet-20250406"
+    content_type: gpg_key
+    content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_puppet ~ '/RPM-GPG-KEY-puppet-20250406', split_lines=False, validate_certs=False) }}"
+    # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-puppet-20250406') }}"
+
+
+foreman_content_credentials_foreman: "{{ ( foreman_content_credentials_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
+  union( foreman_content_credentials_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
+  union( foreman_content_credentials_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
+  union( foreman_content_credentials_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  }}"
+
+foreman_products_foreman_main: []
+foreman_products_foreman: "{{ ( foreman_products_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
+  union( foreman_products_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
+  union( foreman_products_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
+  union( foreman_products_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  }}"
+
+foreman_content_views_foreman_main: []
+foreman_content_views_foreman: "{{ ( foreman_content_views_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
+  union( foreman_content_views_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
+  union( foreman_content_views_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
+  union( foreman_content_views_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  }}"
+
+foreman_operatingsystems_foreman_main: []
+foreman_operatingsystems_foreman: "{{ ( foreman_operatingsystems_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
+  union( foreman_operatingsystems_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
+  union( foreman_operatingsystems_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
+  union( foreman_operatingsystems_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  }}"
+
+foreman_installation_media_foreman_main: []
+foreman_installation_media_foreman: "{{ ( foreman_installation_media_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
+  union( foreman_installation_media_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
+  union( foreman_installation_media_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
+  union( foreman_installation_media_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  }}"
+
+foreman_activation_keys_foreman_main: []
+foreman_activation_keys_foreman: "{{ ( foreman_activation_keys_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
+  union( foreman_activation_keys_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
+  union( foreman_activation_keys_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
+  union( foreman_activation_keys_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  }}"
+
+foreman_sync_plan_products_foreman_main:
+  - "{{ foreman_product_name_prefix | default('') }}Foreman"
+
+foreman_sync_plan_products_foreman: "{{ ( foreman_sync_plan_products_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
+  union( foreman_sync_plan_products_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
+  union( foreman_sync_plan_products_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
+  union( foreman_sync_plan_products_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  }}"
+
