@@ -8,6 +8,58 @@
 
 # foreman_enable_foreman: false
 
-# foreman_enable_foreman_el7: "{{ foreman_enable_foreman | bool }}"
-# foreman_enable_foreman_el8: "{{ foreman_enable_foreman | bool }}"
-# foreman_enable_foreman_el9: "{{ foreman_enable_foreman | bool }}"
+# foreman_enable_foreman310: false
+# foreman_enable_foreman310_el7: false
+# foreman_enable_foreman310_el8: "{{ foreman_enable_foreman310 | bool }}"
+# foreman_enable_foreman310_el9: false
+
+# foreman_enable_foreman310_el8_katello: "{{ foreman_enable_foreman310_el8 | bool }}"
+# foreman_enable_foreman310_el9_katello: "{{ foreman_enable_foreman310_el9 | bool }}"
+
+# foreman_enable_foreman310_el8_puppet: "{{ foreman_enable_foreman310_el8 | bool }}"
+# foreman_enable_foreman310_el9_puppet: "{{ foreman_enable_foreman310_el9 | bool }}"
+
+# foreman_enable_foreman310_el7_client: "{{ foreman_enable_foreman310 | bool or
+#                                           foreman_enable_foreman310_el7 | bool }}"
+# foreman_enable_foreman310_el8_client: "{{ foreman_enable_foreman310 | bool or
+#                                           foreman_enable_foreman310_el8 | bool }}"
+# foreman_enable_foreman310_el9_client: "{{ foreman_enable_foreman310 | bool or
+#                                           foreman_enable_foreman310_el9 | bool }}"
+
+
+# foreman_enable_foreman311: false
+# foreman_enable_foreman311_el7: false
+# foreman_enable_foreman311_el8: "{{ foreman_enable_foreman311 | bool }}"
+# foreman_enable_foreman311_el9: false
+
+# foreman_enable_foreman311_el8_katello: "{{ foreman_enable_foreman311_el8 | bool }}"
+# foreman_enable_foreman311_el9_katello: "{{ foreman_enable_foreman311_el9 | bool }}"
+
+# foreman_enable_foreman311_el8_puppet: "{{ foreman_enable_foreman311_el8 | bool }}"
+# foreman_enable_foreman311_el9_puppet: "{{ foreman_enable_foreman311_el9 | bool }}"
+
+# foreman_enable_foreman311_el7_client: "{{ foreman_enable_foreman311 | bool or
+#                                           foreman_enable_foreman311_el7 | bool }}"
+# foreman_enable_foreman311_el8_client: "{{ foreman_enable_foreman311 | bool or
+#                                           foreman_enable_foreman311_el8 | bool }}"
+# foreman_enable_foreman311_el9_client: "{{ foreman_enable_foreman311 | bool or
+#                                           foreman_enable_foreman311_el9 | bool }}"
+
+
+# foreman_enable_foreman312: "{{ foreman_enable_foreman | bool }}"
+# foreman_enable_foreman312_el7: false
+# foreman_enable_foreman312_el8: "{{ foreman_enable_foreman312 | bool }}"
+# foreman_enable_foreman312_el9: false
+
+# foreman_enable_foreman312_el8_katello: "{{ foreman_enable_foreman312_el8 | bool }}"
+# foreman_enable_foreman312_el9_katello: "{{ foreman_enable_foreman312_el9 | bool }}"
+
+# foreman_enable_foreman312_el8_puppet: "{{ foreman_enable_foreman312_el8 | bool }}"
+# foreman_enable_foreman312_el9_puppet: "{{ foreman_enable_foreman312_el9 | bool }}"
+
+# foreman_enable_foreman312_el7_client: "{{ foreman_enable_foreman312 | bool or
+#                                           foreman_enable_foreman312_el7 | bool }}"
+# foreman_enable_foreman312_el8_client: "{{ foreman_enable_foreman312 | bool or
+#                                           foreman_enable_foreman312_el8 | bool }}"
+# foreman_enable_foreman312_el9_client: "{{ foreman_enable_foreman312 | bool or
+#                                           foreman_enable_foreman312_el9 | bool }}"

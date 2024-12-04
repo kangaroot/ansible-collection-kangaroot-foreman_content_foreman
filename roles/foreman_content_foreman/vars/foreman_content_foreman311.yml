@@ -1,0 +1,319 @@
+---
+# noqa: var-naming[no-role-prefix]
+
+foreman_content_credentials_foreman311:
+  - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-foreman-3.11"
+    content_type: gpg_key
+    content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_foreman311 ~ '/releases/3.11/RPM-GPG-KEY-foreman', split_lines=False, validate_certs=False) }}"
+    # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-foreman-3.11') }}"
+  - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-candlepin-4.4"
+    content_type: gpg_key
+    content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_foreman311 ~ '/candlepin/4.4/RPM-GPG-KEY-candlepin', split_lines=False, validate_certs=False) }}"
+    # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-candlepin-4.4') }}"
+  - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-pulpcore-3.49"
+    content_type: gpg_key
+    content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_foreman311 ~ '/pulpcore/3.49/GPG-RPM-KEY-pulpcore', split_lines=False, validate_certs=False) }}"
+    # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-pulpcore-3.49') }}"
+
+
+foreman_products_defaults: &foreman_products_defaults
+  content_type: yum
+  gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-foreman-3.11"
+  download_policy: "{{ foreman_products_defaults_download_policy_foreman311 }}"
+  # mirror_on_sync: True
+  # mirroring_policy: "additive"
+  # mirroring_policy: "mirror_content_only"
+  # mirroring_policy: "mirror_complete"
+  mirroring_policy: "{{ foreman_products_defaults_mirroring_policy_foreman311 }}"
+  verify_ssl_on_sync: "{{ foreman_products_defaults_verify_ssl_on_sync_foreman311 | bool }}"
+  # http_proxy: Default Proxy
+  http_proxy_policy: "{{ foreman_products_defaults_http_proxy_policy_foreman311 }}"
+  unprotected: "{{ foreman_products_defaults_unprotected_foreman311 | bool }}"
+
+
+foreman_products_foreman311_el7_client:
+  - name: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    label: "{{ foreman_product_label_prefix | default('') }}Foreman"
+    organization: "{{ foreman_organization_foreman311_el7 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman Client 3.11 - EL7"
+        label: "{{ foreman_repo_label_prefix | default('') }}foreman-client-3_11-el7"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/client/3.11/el7/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el7 }}"
+
+foreman_products_foreman311_el8:
+  - name: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    label: "{{ foreman_product_label_prefix | default('') }}Foreman"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman 3.11 - EL8"
+        label: "{{ foreman_repo_label_prefix | default('') }}foreman-3_11-el8"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/releases/3.11/el8/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el8 }}"
+
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman plugins 3.11 - EL8"
+        label: "{{ foreman_repo_label_prefix | default('') }}foreman-plugins-3_11-el8"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/plugins/3.11/el8/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el8 }}"
+
+foreman_products_foreman311_el8_katello:
+  - name: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    label: "{{ foreman_product_label_prefix | default('') }}Foreman"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Katello 4.13 - EL8"
+        label: "{{ foreman_repo_label_prefix | default('') }}katello-4_13-el8"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/katello/4.13/katello/el8/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el8 }}"
+
+      - name: "{{ foreman_repo_name_prefix | default('') }}Candlepin 4.4 - EL8"
+        label: "{{ foreman_repo_label_prefix | default('') }}candlepin-4_4-el8"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/candlepin/4.4/el8/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el8 }}"
+
+      - name: "{{ foreman_repo_name_prefix | default('') }}Pulpcore 3.49 - EL8"
+        label: "{{ foreman_repo_label_prefix | default('') }}pulpcore-3_49-el8"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/pulpcore/3.49/el8/x86_64/"
+        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-pulpcore"
+        organization: "{{ foreman_organization_foreman311_el8 }}"
+
+foreman_products_foreman311_el8_puppet:
+  - name: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    label: "{{ foreman_product_label_prefix | default('') }}Foreman"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Puppet 7 Repository EL8 - x86_64"
+        label: "{{ foreman_repo_label_prefix | default('') }}puppet7-el8"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_puppet7 }}/puppet7/el/8/x86_64"
+        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-puppet"
+        organization: "{{ foreman_organization_foreman311_el8 }}"
+
+foreman_products_foreman311_el8_client:
+  - name: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    label: "{{ foreman_product_label_prefix | default('') }}Foreman"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman Client 3.11 - EL8"
+        label: "{{ foreman_repo_label_prefix | default('') }}foreman-client-3_11-el8"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/client/3.11/el8/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el8 }}"
+
+foreman_products_foreman311_el9:
+  - name: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    label: "{{ foreman_product_label_prefix | default('') }}Foreman"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman 3.11 - EL9"
+        label: "{{ foreman_repo_label_prefix | default('') }}foreman-3_11-el9"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/releases/3.11/el9/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el9 }}"
+
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman plugins 3.11 - EL9"
+        label: "{{ foreman_repo_label_prefix | default('') }}foreman-plugins-3_11-el9"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/plugins/3.11/el8/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el8 }}"
+
+foreman_products_foreman311_el9_katello:
+  - name: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    label: "{{ foreman_product_label_prefix | default('') }}Foreman"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Katello 4.13 - EL8"
+        label: "{{ foreman_repo_label_prefix | default('') }}katello-4_13-el8"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/katello/4.13/katello/el9/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el8 }}"
+
+      - name: "{{ foreman_repo_name_prefix | default('') }}Candlepin 4.4 - EL9"
+        label: "{{ foreman_repo_label_prefix | default('') }}candlepin-4_4-el9"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/candlepin/4.4/el9/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el9 }}"
+
+      - name: "{{ foreman_repo_name_prefix | default('') }}Pulpcore 3.49 - EL9"
+        label: "{{ foreman_repo_label_prefix | default('') }}pulpcore-3_49-el9"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/pulpcore/3.49/el9/x86_64/"
+        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-pulpcore"
+        organization: "{{ foreman_organization_foreman311_el9 }}"
+
+foreman_products_foreman311_el9_puppet:
+  - name: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    label: "{{ foreman_product_label_prefix | default('') }}Foreman"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Puppet 7 Repository EL9 - x86_64"
+        label: "{{ foreman_repo_label_prefix | default('') }}puppet7-el9"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_puppet7 }}/puppet7/el/9/x86_64"
+        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-puppet"
+        organization: "{{ foreman_organization_foreman311_el9 }}"
+
+foreman_products_foreman311_el9_client:
+  - name: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    label: "{{ foreman_product_label_prefix | default('') }}Foreman"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman Client 3.11 - EL9"
+        label: "{{ foreman_repo_label_prefix | default('') }}foreman-client-3_11-el9"
+        <<: *foreman_products_defaults
+        url: "{{ foreman_repo_baseurl_foreman311 }}/client/3.11/el9/x86_64/"
+        organization: "{{ foreman_organization_foreman311_el9 }}"
+
+foreman_products_foreman311_main: []
+foreman_products_foreman311: "{{ ( foreman_products_foreman311_main | default([]) if foreman_enable_foreman311 | bool else [] ) |
+  union( foreman_products_foreman311_el8 | default([]) if foreman_enable_foreman311_el8 | bool else [] ) |
+  union( foreman_products_foreman311_el9 | default([]) if foreman_enable_foreman311_el9 | bool else [] ) |
+
+  union( foreman_products_foreman311_el8_katello | default([]) if foreman_enable_foreman311_el8_katello | bool else [] ) |
+  union( foreman_products_foreman311_el9_katello | default([]) if foreman_enable_foreman311_el9_katello | bool else [] ) |
+
+  union( foreman_products_foreman311_el8_puppet | default([]) if foreman_enable_foreman311_el8_puppet | bool else [] ) |
+  union( foreman_products_foreman311_el9_puppet | default([]) if foreman_enable_foreman311_el9_puppet | bool else [] ) |
+
+  union( foreman_products_foreman311_el7_client | default([]) if foreman_enable_foreman311_el7_client | bool else [] ) |
+  union( foreman_products_foreman311_el8_client | default([]) if foreman_enable_foreman311_el8_client | bool else [] ) |
+  union( foreman_products_foreman311_el9_client | default([]) if foreman_enable_foreman311_el9_client | bool else [] )
+  }}"
+
+
+foreman_content_views_foreman311_el7_client:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}foreman_client_3_11_el7"
+    organization: "{{ foreman_organization_foreman_el7 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman Client 3.11 - EL7"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el7 }}"
+
+foreman_content_views_foreman311_el8:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}foreman_3_11_el8"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman 3.11 - EL8"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el8 }}"
+
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}foreman_plugins_3_11_el8"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman plugins 3.11 - EL8"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el8 }}"
+
+foreman_content_views_foreman311_el8_katello:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}katello_4_13_el8"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Katello 4.13 - EL8"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el8 }}"
+
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}candlepin_4_4_el8"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Candlepin 4.4 - EL8"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el8 }}"
+
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}pulpcore_3_49_el8"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Pulpcore 3.49 - EL8"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el8 }}"
+
+foreman_content_views_foreman311_el8_puppet:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}puppet7_el8"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Puppet 7 Repository EL8 - x86_64"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el8 }}"
+
+foreman_content_views_foreman311_el8_client:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}foreman_client_3_11_el8"
+    organization: "{{ foreman_organization_foreman311_el8 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman Client 3.11 - EL8"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el8 }}"
+
+foreman_content_views_foreman311_el9:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}foreman_3_11_el9"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman 3.11 - EL9"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el9 }}"
+
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}foreman_plugins_3_11_el9"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman plugins 3.11 - EL9"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el9 }}"
+
+foreman_content_views_foreman311_el9_katello:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}katello_4_13_el9"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Katello 4.13 - EL9"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el9 }}"
+
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}candlepin_4_4_el9"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Candlepin 4.4 - EL9"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el9 }}"
+
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}pulpcore_3_49_el9"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Pulpcore 3.49 - EL9"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el9 }}"
+
+foreman_content_views_foreman311_el9_puppet:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}puppet7_el9"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Puppet 7 Repository EL9 - x86_64"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el9 }}"
+
+foreman_content_views_foreman311_el9_client:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}foreman_client_3_11_el9"
+    organization: "{{ foreman_organization_foreman311_el9 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}Foreman Client 3.11 - EL9"
+        product: "{{ foreman_product_name_prefix | default('') }}Foreman"
+    allow_promote: "{{ foreman_cv_allow_promote_foreman311_el9 }}"
+
+foreman_content_views_foreman311_main: []
+foreman_content_views_foreman311: "{{ ( foreman_content_views_foreman311_main | default([]) if foreman_enable_foreman311 | bool else [] ) |
+  union( foreman_content_views_foreman311_el8 | default([]) if foreman_enable_foreman311_el8 | bool else [] ) |
+  union( foreman_content_views_foreman311_el9 | default([]) if foreman_enable_foreman311_el9 | bool else [] ) |
+
+  union( foreman_content_views_foreman311_el8_katello | default([]) if foreman_enable_foreman311_el8_katello | bool else [] ) |
+  union( foreman_content_views_foreman311_el9_katello | default([]) if foreman_enable_foreman311_el9_katello | bool else [] ) |
+
+  union( foreman_content_views_foreman311_el8_puppet | default([]) if foreman_enable_foreman311_el8_puppet | bool else [] ) |
+  union( foreman_content_views_foreman311_el9_puppet | default([]) if foreman_enable_foreman311_el9_puppet | bool else [] ) |
+
+  union( foreman_content_views_foreman311_el7_client | default([]) if foreman_enable_foreman311_el7_client | bool else [] ) |
+  union( foreman_content_views_foreman311_el8_client | default([]) if foreman_enable_foreman311_el8_client | bool else [] ) |
+  union( foreman_content_views_foreman311_el9_client | default([]) if foreman_enable_foreman311_el9_client | bool else [] )
+  }}"
+

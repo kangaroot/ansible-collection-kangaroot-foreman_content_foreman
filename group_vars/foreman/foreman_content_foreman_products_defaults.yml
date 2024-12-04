@@ -17,3 +17,21 @@
 # foreman_products_defaults_verify_ssl_on_sync_foreman: "{{ foreman_products_defaults_verify_ssl_on_sync | bool }}"
 # foreman_products_defaults_http_proxy_policy_foreman: "{{ foreman_products_defaults_http_proxy_policy }}"
 # foreman_products_defaults_unprotected_foreman: "{{ foreman_products_defaults_unprotected | bool }}"
+
+# foreman_products_defaults_download_policy_foreman310: "{{ foreman_products_defaults_download_policy_foreman }}"
+# foreman_products_defaults_mirroring_policy_foreman310: "{{ foreman_products_defaults_mirroring_policy_foreman }}"
+# foreman_products_defaults_verify_ssl_on_sync_foreman310: "{{ foreman_products_defaults_verify_ssl_on_sync_foreman | bool }}"
+# foreman_products_defaults_http_proxy_policy_foreman310: "{{ foreman_products_defaults_http_proxy_policy_foreman }}"
+# foreman_products_defaults_unprotected_foreman310: "{{ foreman_products_defaults_unprotected_foreman | bool }}"
+
+# foreman_products_defaults_download_policy_foreman311: "{{ foreman_products_defaults_download_policy_foreman }}"
+# foreman_products_defaults_mirroring_policy_foreman311: "{{ foreman_products_defaults_mirroring_policy_foreman }}"
+# foreman_products_defaults_verify_ssl_on_sync_foreman311: "{{ foreman_products_defaults_verify_ssl_on_sync_foreman | bool }}"
+# foreman_products_defaults_http_proxy_policy_foreman311: "{{ foreman_products_defaults_http_proxy_policy_foreman }}"
+# foreman_products_defaults_unprotected_foreman311: "{{ foreman_products_defaults_unprotected_foreman | bool }}"
+
+# foreman_products_defaults_download_policy_foreman312: "{{ foreman_products_defaults_download_policy_foreman }}"
+# foreman_products_defaults_mirroring_policy_foreman312: "{{ foreman_products_defaults_mirroring_policy_foreman }}"
+# foreman_products_defaults_verify_ssl_on_sync_foreman312: "{{ foreman_products_defaults_verify_ssl_on_sync_foreman | bool }}"
+# foreman_products_defaults_http_proxy_policy_foreman312: "{{ foreman_products_defaults_http_proxy_policy_foreman }}"
+# foreman_products_defaults_unprotected_foreman312: "{{ foreman_products_defaults_unprotected_foreman | bool }}"

@@ -8,6 +8,17 @@
 
 # foreman_organization_foreman: "{{ foreman_organization }}"
 
-# foreman_organization_foreman_el7: "{{ foreman_organization_foreman }}"
-# foreman_organization_foreman_el8: "{{ foreman_organization_foreman }}"
-# foreman_organization_foreman_el9: "{{ foreman_organization_foreman }}"
+# foreman_organization_foreman310: "{{ foreman_organization_foreman }}"
+# foreman_organization_foreman310_el7: "{{ foreman_organization_foreman310 }}"
+# foreman_organization_foreman310_el8: "{{ foreman_organization_foreman310 }}"
+# foreman_organization_foreman310_el9: "{{ foreman_organization_foreman310 }}"
+
+# foreman_organization_foreman311: "{{ foreman_organization_foreman }}"
+# foreman_organization_foreman311_el7: "{{ foreman_organization_foreman311 }}"
+# foreman_organization_foreman311_el8: "{{ foreman_organization_foreman311 }}"
+# foreman_organization_foreman311_el9: "{{ foreman_organization_foreman311 }}"
+
+# foreman_organization_foreman312: "{{ foreman_organization_foreman }}"
+# foreman_organization_foreman312_el7: "{{ foreman_organization_foreman312 }}"
+# foreman_organization_foreman312_el8: "{{ foreman_organization_foreman312 }}"
+# foreman_organization_foreman312_el9: "{{ foreman_organization_foreman312 }}"

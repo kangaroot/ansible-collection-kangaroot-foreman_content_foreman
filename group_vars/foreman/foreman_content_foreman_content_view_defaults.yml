@@ -12,6 +12,17 @@
 
 # foreman_cv_allow_promote_foreman: "{{ foreman_cv_allow_promote | bool }}"
 
-# foreman_cv_allow_promote_foreman_el7: "{{ foreman_cv_allow_promote_foreman | bool }}"
-# foreman_cv_allow_promote_foreman_el8: "{{ foreman_cv_allow_promote_foreman | bool }}"
-# foreman_cv_allow_promote_foreman_el9: "{{ foreman_cv_allow_promote_foreman | bool }}"
+# foreman_cv_allow_promote_foreman310: "{{ foreman_cv_allow_promote_foreman | bool }}"
+# foreman_cv_allow_promote_foreman310_el7: "{{ foreman_cv_allow_promote_foreman310 | bool }}"
+# foreman_cv_allow_promote_foreman310_el8: "{{ foreman_cv_allow_promote_foreman310 | bool }}"
+# foreman_cv_allow_promote_foreman310_el9: "{{ foreman_cv_allow_promote_foreman310 | bool }}"
+
+# foreman_cv_allow_promote_foreman311: "{{ foreman_cv_allow_promote_foreman | bool }}"
+# foreman_cv_allow_promote_foreman311_el7: "{{ foreman_cv_allow_promote_foreman311 | bool }}"
+# foreman_cv_allow_promote_foreman311_el8: "{{ foreman_cv_allow_promote_foreman311 | bool }}"
+# foreman_cv_allow_promote_foreman311_el9: "{{ foreman_cv_allow_promote_foreman311 | bool }}"
+
+# foreman_cv_allow_promote_foreman312: "{{ foreman_cv_allow_promote_foreman | bool }}"
+# foreman_cv_allow_promote_foreman312_el7: "{{ foreman_cv_allow_promote_foreman312 | bool }}"
+# foreman_cv_allow_promote_foreman312_el8: "{{ foreman_cv_allow_promote_foreman312 | bool }}"
+# foreman_cv_allow_promote_foreman312_el9: "{{ foreman_cv_allow_promote_foreman312 | bool }}"

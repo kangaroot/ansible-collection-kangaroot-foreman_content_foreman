@@ -9,9 +9,13 @@
 ### FOREMAN
 
 foreman_repo_baseurl_foreman: https://yum.theforeman.org
-foreman_repo_baseurl_fedora_copr: https://download.copr.fedorainfracloud.org/results
-foreman_repo_baseurl_puppet: http://yum.puppetlabs.com
 
+foreman_repo_baseurl_foreman310: "{{ foreman_repo_baseurl_foreman }}"
+foreman_repo_baseurl_foreman311: "{{ foreman_repo_baseurl_foreman }}"
+foreman_repo_baseurl_foreman312: "{{ foreman_repo_baseurl_foreman }}"
+
+foreman_repo_baseurl_puppet: http://yum.puppetlabs.com
+foreman_repo_baseurl_puppet7: "{{ foreman_repo_baseurl_puppet }}"
 
 #######################################
 ### ENABLE VARS
@@ -21,9 +25,61 @@ foreman_repo_baseurl_puppet: http://yum.puppetlabs.com
 
 foreman_enable_foreman: false
 
-foreman_enable_foreman_el7: "{{ foreman_enable_foreman | bool }}"
-foreman_enable_foreman_el8: "{{ foreman_enable_foreman | bool }}"
-foreman_enable_foreman_el9: "{{ foreman_enable_foreman | bool }}"
+foreman_enable_foreman310: false
+foreman_enable_foreman310_el7: false
+foreman_enable_foreman310_el8: "{{ foreman_enable_foreman310 | bool }}"
+foreman_enable_foreman310_el9: false
+
+foreman_enable_foreman310_el8_katello: "{{ foreman_enable_foreman310_el8 | bool }}"
+foreman_enable_foreman310_el9_katello: "{{ foreman_enable_foreman310_el9 | bool }}"
+
+foreman_enable_foreman310_el8_puppet: "{{ foreman_enable_foreman310_el8 | bool }}"
+foreman_enable_foreman310_el9_puppet: "{{ foreman_enable_foreman310_el9 | bool }}"
+
+foreman_enable_foreman310_el7_client: "{{ foreman_enable_foreman310 | bool or
+                                          foreman_enable_foreman310_el7 | bool }}"
+foreman_enable_foreman310_el8_client: "{{ foreman_enable_foreman310 | bool or
+                                          foreman_enable_foreman310_el8 | bool }}"
+foreman_enable_foreman310_el9_client: "{{ foreman_enable_foreman310 | bool or
+                                          foreman_enable_foreman310_el9 | bool }}"
+
+
+foreman_enable_foreman311: false
+foreman_enable_foreman311_el7: false
+foreman_enable_foreman311_el8: "{{ foreman_enable_foreman311 | bool }}"
+foreman_enable_foreman311_el9: false
+
+foreman_enable_foreman311_el8_katello: "{{ foreman_enable_foreman311_el8 | bool }}"
+foreman_enable_foreman311_el9_katello: "{{ foreman_enable_foreman311_el9 | bool }}"
+
+foreman_enable_foreman311_el8_puppet: "{{ foreman_enable_foreman311_el8 | bool }}"
+foreman_enable_foreman311_el9_puppet: "{{ foreman_enable_foreman311_el9 | bool }}"
+
+foreman_enable_foreman311_el7_client: "{{ foreman_enable_foreman311 | bool or
+                                          foreman_enable_foreman311_el7 | bool }}"
+foreman_enable_foreman311_el8_client: "{{ foreman_enable_foreman311 | bool or
+                                          foreman_enable_foreman311_el8 | bool }}"
+foreman_enable_foreman311_el9_client: "{{ foreman_enable_foreman311 | bool or
+                                          foreman_enable_foreman311_el9 | bool }}"
+
+
+foreman_enable_foreman312: "{{ foreman_enable_foreman | bool }}"
+foreman_enable_foreman312_el7: false
+foreman_enable_foreman312_el8: "{{ foreman_enable_foreman312 | bool }}"
+foreman_enable_foreman312_el9: false
+
+foreman_enable_foreman312_el8_katello: "{{ foreman_enable_foreman312_el8 | bool }}"
+foreman_enable_foreman312_el9_katello: "{{ foreman_enable_foreman312_el9 | bool }}"
+
+foreman_enable_foreman312_el8_puppet: "{{ foreman_enable_foreman312_el8 | bool }}"
+foreman_enable_foreman312_el9_puppet: "{{ foreman_enable_foreman312_el9 | bool }}"
+
+foreman_enable_foreman312_el7_client: "{{ foreman_enable_foreman312 | bool or
+                                          foreman_enable_foreman312_el7 | bool }}"
+foreman_enable_foreman312_el8_client: "{{ foreman_enable_foreman312 | bool or
+                                          foreman_enable_foreman312_el8 | bool }}"
+foreman_enable_foreman312_el9_client: "{{ foreman_enable_foreman312 | bool or
+                                          foreman_enable_foreman312_el9 | bool }}"
 
 
 #######################################
@@ -38,6 +94,24 @@ foreman_products_defaults_verify_ssl_on_sync_foreman: "{{ foreman_products_defau
 foreman_products_defaults_http_proxy_policy_foreman: "{{ foreman_products_defaults_http_proxy_policy }}"
 foreman_products_defaults_unprotected_foreman: "{{ foreman_products_defaults_unprotected | bool }}"
 
+foreman_products_defaults_download_policy_foreman310: "{{ foreman_products_defaults_download_policy_foreman }}"
+foreman_products_defaults_mirroring_policy_foreman310: "{{ foreman_products_defaults_mirroring_policy_foreman }}"
+foreman_products_defaults_verify_ssl_on_sync_foreman310: "{{ foreman_products_defaults_verify_ssl_on_sync_foreman | bool }}"
+foreman_products_defaults_http_proxy_policy_foreman310: "{{ foreman_products_defaults_http_proxy_policy_foreman }}"
+foreman_products_defaults_unprotected_foreman310: "{{ foreman_products_defaults_unprotected_foreman | bool }}"
+
+foreman_products_defaults_download_policy_foreman311: "{{ foreman_products_defaults_download_policy_foreman }}"
+foreman_products_defaults_mirroring_policy_foreman311: "{{ foreman_products_defaults_mirroring_policy_foreman }}"
+foreman_products_defaults_verify_ssl_on_sync_foreman311: "{{ foreman_products_defaults_verify_ssl_on_sync_foreman | bool }}"
+foreman_products_defaults_http_proxy_policy_foreman311: "{{ foreman_products_defaults_http_proxy_policy_foreman }}"
+foreman_products_defaults_unprotected_foreman311: "{{ foreman_products_defaults_unprotected_foreman | bool }}"
+
+foreman_products_defaults_download_policy_foreman312: "{{ foreman_products_defaults_download_policy_foreman }}"
+foreman_products_defaults_mirroring_policy_foreman312: "{{ foreman_products_defaults_mirroring_policy_foreman }}"
+foreman_products_defaults_verify_ssl_on_sync_foreman312: "{{ foreman_products_defaults_verify_ssl_on_sync_foreman | bool }}"
+foreman_products_defaults_http_proxy_policy_foreman312: "{{ foreman_products_defaults_http_proxy_policy_foreman }}"
+foreman_products_defaults_unprotected_foreman312: "{{ foreman_products_defaults_unprotected_foreman | bool }}"
+
 
 #######################################
 ### ORGANIZATION VARS
@@ -47,9 +121,20 @@ foreman_products_defaults_unprotected_foreman: "{{ foreman_products_defaults_unp
 
 foreman_organization_foreman: "{{ foreman_organization }}"
 
-foreman_organization_foreman_el7: "{{ foreman_organization_foreman }}"
-foreman_organization_foreman_el8: "{{ foreman_organization_foreman }}"
-foreman_organization_foreman_el9: "{{ foreman_organization_foreman }}"
+foreman_organization_foreman310: "{{ foreman_organization_foreman }}"
+foreman_organization_foreman310_el7: "{{ foreman_organization_foreman310 }}"
+foreman_organization_foreman310_el8: "{{ foreman_organization_foreman310 }}"
+foreman_organization_foreman310_el9: "{{ foreman_organization_foreman310 }}"
+
+foreman_organization_foreman311: "{{ foreman_organization_foreman }}"
+foreman_organization_foreman311_el7: "{{ foreman_organization_foreman311 }}"
+foreman_organization_foreman311_el8: "{{ foreman_organization_foreman311 }}"
+foreman_organization_foreman311_el9: "{{ foreman_organization_foreman311 }}"
+
+foreman_organization_foreman312: "{{ foreman_organization_foreman }}"
+foreman_organization_foreman312_el7: "{{ foreman_organization_foreman312 }}"
+foreman_organization_foreman312_el8: "{{ foreman_organization_foreman312 }}"
+foreman_organization_foreman312_el9: "{{ foreman_organization_foreman312 }}"
 
 
 #######################################
@@ -60,9 +145,20 @@ foreman_organization_foreman_el9: "{{ foreman_organization_foreman }}"
 
 foreman_cv_allow_promote_foreman: "{{ foreman_cv_allow_promote | bool }}"
 
-foreman_cv_allow_promote_foreman_el7: "{{ foreman_cv_allow_promote_foreman | bool }}"
-foreman_cv_allow_promote_foreman_el8: "{{ foreman_cv_allow_promote_foreman | bool }}"
-foreman_cv_allow_promote_foreman_el9: "{{ foreman_cv_allow_promote_foreman | bool }}"
+foreman_cv_allow_promote_foreman310: "{{ foreman_cv_allow_promote_foreman | bool }}"
+foreman_cv_allow_promote_foreman310_el7: "{{ foreman_cv_allow_promote_foreman310 | bool }}"
+foreman_cv_allow_promote_foreman310_el8: "{{ foreman_cv_allow_promote_foreman310 | bool }}"
+foreman_cv_allow_promote_foreman310_el9: "{{ foreman_cv_allow_promote_foreman310 | bool }}"
+
+foreman_cv_allow_promote_foreman311: "{{ foreman_cv_allow_promote_foreman | bool }}"
+foreman_cv_allow_promote_foreman311_el7: "{{ foreman_cv_allow_promote_foreman311 | bool }}"
+foreman_cv_allow_promote_foreman311_el8: "{{ foreman_cv_allow_promote_foreman311 | bool }}"
+foreman_cv_allow_promote_foreman311_el9: "{{ foreman_cv_allow_promote_foreman311 | bool }}"
+
+foreman_cv_allow_promote_foreman312: "{{ foreman_cv_allow_promote_foreman | bool }}"
+foreman_cv_allow_promote_foreman312_el7: "{{ foreman_cv_allow_promote_foreman312 | bool }}"
+foreman_cv_allow_promote_foreman312_el8: "{{ foreman_cv_allow_promote_foreman312 | bool }}"
+foreman_cv_allow_promote_foreman312_el9: "{{ foreman_cv_allow_promote_foreman312 | bool }}"
 
 
 #######################################
@@ -70,18 +166,6 @@ foreman_cv_allow_promote_foreman_el9: "{{ foreman_cv_allow_promote_foreman | boo
 #######################################
 
 foreman_content_credentials_foreman_main:
-  - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-foreman"
-    content_type: gpg_key
-    content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_foreman ~ '/releases/latest/RPM-GPG-KEY-foreman', split_lines=False, validate_certs=False) }}"
-    # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-foreman') }}"
-  # - name: RPM-GPG-KEY-copr-qpid
-  #   content_type: gpg_key
-  #   content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_fedora_copr ~ '/@qpid/qpid/pubkey.gpg', split_lines=False, validate_certs=False) }}"
-  #   # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-copr-qpid') }}"
-  - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-pulpcore"
-    content_type: gpg_key
-    content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_foreman ~ '/pulpcore/3.16/GPG-RPM-KEY-pulpcore', split_lines=False, validate_certs=False) }}"
-    # content: "{{ lookup('ansible.builtin.file', role_path ~ '/files/RPM-GPG-KEY-pulpcore') }}"
   - name: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-puppet"
     content_type: gpg_key
     content: "{{ lookup('ansible.builtin.url', foreman_repo_baseurl_puppet ~ '/RPM-GPG-KEY-puppet', split_lines=False, validate_certs=False) }}"
@@ -93,52 +177,52 @@ foreman_content_credentials_foreman_main:
 
 
 foreman_content_credentials_foreman: "{{ ( foreman_content_credentials_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
-  union( foreman_content_credentials_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
-  union( foreman_content_credentials_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
-  union( foreman_content_credentials_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  union( foreman_content_credentials_foreman310 | default([]) if foreman_enable_foreman310 | bool else [] ) |
+  union( foreman_content_credentials_foreman311 | default([]) if foreman_enable_foreman311 | bool else [] ) |
+  union( foreman_content_credentials_foreman312 | default([]) if foreman_enable_foreman312 | bool else [] )
   }}"
 
 foreman_products_foreman_main: []
 foreman_products_foreman: "{{ ( foreman_products_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
-  union( foreman_products_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
-  union( foreman_products_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
-  union( foreman_products_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  union( foreman_products_foreman310 | default([]) if foreman_enable_foreman310 | bool else [] ) |
+  union( foreman_products_foreman311 | default([]) if foreman_enable_foreman311 | bool else [] ) |
+  union( foreman_products_foreman312 | default([]) if foreman_enable_foreman312 | bool else [] )
   }}"
 
 foreman_content_views_foreman_main: []
 foreman_content_views_foreman: "{{ ( foreman_content_views_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
-  union( foreman_content_views_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
-  union( foreman_content_views_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
-  union( foreman_content_views_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  union( foreman_content_views_foreman310 | default([]) if foreman_enable_foreman310 | bool else [] ) |
+  union( foreman_content_views_foreman311 | default([]) if foreman_enable_foreman311 | bool else [] ) |
+  union( foreman_content_views_foreman312 | default([]) if foreman_enable_foreman312 | bool else [] )
   }}"
 
 foreman_operatingsystems_foreman_main: []
 foreman_operatingsystems_foreman: "{{ ( foreman_operatingsystems_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
-  union( foreman_operatingsystems_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
-  union( foreman_operatingsystems_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
-  union( foreman_operatingsystems_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  union( foreman_operatingsystems_foreman310 | default([]) if foreman_enable_foreman310 | bool else [] ) |
+  union( foreman_operatingsystems_foreman311 | default([]) if foreman_enable_foreman311 | bool else [] ) |
+  union( foreman_operatingsystems_foreman312 | default([]) if foreman_enable_foreman312 | bool else [] )
   }}"
 
 foreman_installation_media_foreman_main: []
 foreman_installation_media_foreman: "{{ ( foreman_installation_media_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
-  union( foreman_installation_media_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
-  union( foreman_installation_media_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
-  union( foreman_installation_media_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  union( foreman_installation_media_foreman310 | default([]) if foreman_enable_foreman310 | bool else [] ) |
+  union( foreman_installation_media_foreman311 | default([]) if foreman_enable_foreman311 | bool else [] ) |
+  union( foreman_installation_media_foreman312 | default([]) if foreman_enable_foreman312 | bool else [] )
   }}"
 
 foreman_activation_keys_foreman_main: []
 foreman_activation_keys_foreman: "{{ ( foreman_activation_keys_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
-  union( foreman_activation_keys_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
-  union( foreman_activation_keys_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
-  union( foreman_activation_keys_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  union( foreman_activation_keys_foreman310 | default([]) if foreman_enable_foreman310 | bool else [] ) |
+  union( foreman_activation_keys_foreman311 | default([]) if foreman_enable_foreman311 | bool else [] ) |
+  union( foreman_activation_keys_foreman312 | default([]) if foreman_enable_foreman312 | bool else [] )
   }}"
 
 foreman_sync_plan_products_foreman_main:
   - "{{ foreman_product_name_prefix | default('') }}Foreman"
 
 foreman_sync_plan_products_foreman: "{{ ( foreman_sync_plan_products_foreman_main | default([]) if foreman_enable_foreman | bool else [] ) |
-  union( foreman_sync_plan_products_foreman_el7 | default([]) if foreman_enable_foreman_el7 | bool else [] ) |
-  union( foreman_sync_plan_products_foreman_el8 | default([]) if foreman_enable_foreman_el8 | bool else [] ) |
-  union( foreman_sync_plan_products_foreman_el9 | default([]) if foreman_enable_foreman_el9 | bool else [] )
+  union( foreman_sync_plan_products_foreman310 | default([]) if foreman_enable_foreman310 | bool else [] ) |
+  union( foreman_sync_plan_products_foreman311 | default([]) if foreman_enable_foreman311 | bool else [] ) |
+  union( foreman_sync_plan_products_foreman312 | default([]) if foreman_enable_foreman312 | bool else [] )
   }}"
 
