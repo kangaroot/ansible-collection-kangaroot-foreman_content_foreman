@@ -74,13 +74,14 @@ foreman_products_foreman310_el8_katello:
         label: "{{ foreman_repo_label_prefix | default('') }}candlepin-4_3-el8"
         <<: *foreman_products_defaults
         url: "{{ foreman_repo_baseurl_foreman310 }}/candlepin/4.3/el8/x86_64/"
+        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-candlepin-4.3"
         organization: "{{ foreman_organization_foreman310_el8 }}"
 
       - name: "{{ foreman_repo_name_prefix | default('') }}Pulpcore 3.16 - EL8"
         label: "{{ foreman_repo_label_prefix | default('') }}pulpcore-3_16-el8"
         <<: *foreman_products_defaults
         url: "{{ foreman_repo_baseurl_foreman310 }}/pulpcore/3.16/el8/x86_64/"
-        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-pulpcore"
+        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-pulpcore-3.16"
         organization: "{{ foreman_organization_foreman310_el8 }}"
 
 foreman_products_foreman310_el8_puppet:
@@ -138,13 +139,14 @@ foreman_products_foreman310_el9_katello:
         label: "{{ foreman_repo_label_prefix | default('') }}candlepin-4_3-el9"
         <<: *foreman_products_defaults
         url: "{{ foreman_repo_baseurl_foreman310 }}/candlepin/4.3/el9/x86_64/"
+        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-candlepin-4.3"
         organization: "{{ foreman_organization_foreman310_el9 }}"
 
       - name: "{{ foreman_repo_name_prefix | default('') }}Pulpcore 3.16 - EL9"
         label: "{{ foreman_repo_label_prefix | default('') }}pulpcore-3_16-el9"
         <<: *foreman_products_defaults
         url: "{{ foreman_repo_baseurl_foreman310 }}/pulpcore/3.16/el9/x86_64/"
-        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-pulpcore"
+        gpg_key: "{{ foreman_cred_name_prefix | default('') }}RPM-GPG-KEY-pulpcore-3.16"
         organization: "{{ foreman_organization_foreman310_el9 }}"
 
 foreman_products_foreman310_el9_puppet:
